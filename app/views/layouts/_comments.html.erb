@@ -1,0 +1,55 @@
+<html>
+<div class="container">
+<!--comments in article show-->
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ -->
+ <h3 class="text-danger">Add a Comment:</h3>
+ <hr/>
+
+<div class="form-horizontal">
+		
+		
+		<%= form_for ([@article,@comment]) do |c| %>
+
+			<div class="form-group text-success">
+				<%= c.label :Commenter,class:"control-label col-sm-4"%>
+			<div class="col-sm-4">
+				<%= c.text_field :commenter,class:"form-control"%>
+			</div>
+			</div>
+
+			<div class="form-group text-success">
+				<%= c.label :body,class:"control-label col-sm-4"%>
+			<div class="col-sm-4">
+				<%= c.text_area :body,class:"form-control" %>
+			</div>
+			</div>
+
+			<div class="form-group">
+				<%= c.submit "add comment",class:"btn btn-sm btn-info col-sm-offset-4"%>
+
+			</div>
+
+			<% if @comment.errors.present? %>
+		    <div id="error_explanation">
+		      <h3 class="text-danger">
+		        <%= pluralize(@comment.errors.count, "error") %> prohibited
+		        this article from being saved:
+		      </h3>
+		      <ul>
+		        <% @comment.errors.full_messages.each do |msg| %>
+		          <div class="alert alert-danger">
+		          	<li><%= msg %></li>
+		          </div>
+		        <% end %>
+		      </ul>
+		    </div>
+  		<% end %>
+
+
+		<% end %>
+
+
+</div>
+</div>
+</html>

@@ -1,0 +1,48 @@
+<style>
+	.textcolor{color:green;}
+	.align{text-align:center;}
+</style>
+
+<center><h2 class="text-danger">All Articles</h2></center>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<div class="container">
+
+	<%= link_to "new article",new_article_path ,class: "btn btn-info btn-sm"%><br/>
+
+	<br/><div class="table">
+		<table class="table table-striped table-hover table-bordered">	
+			<tr class="info">
+				<th class="align">Title</th>
+				<th class="align">Description</th>
+				<th class="align">Category</th>
+				<% if current_user %>
+					<% if current_user.role == "admin" %>
+						<th colspan="5" class="align">Actions</th>
+					<%else%>
+					<%end%>
+				<%else%>
+				<%end%>
+			</tr>
+			
+			<% @articles.each do |a|%>
+			<tr class="textcolor ">
+				<td class="align"><%=link_to a.title,a %></td>
+				<td class="align"><%= a.text %></td>
+				<td class="align"><%= link_to a.category.name,article_path(a) %></td>
+
+				<% if current_user %>
+				    <% if current_user.role == "admin" %>
+						<td class="align"><%= link_to "edit",edit_article_path(a)%></td> 
+						<td class="align"><%= link_to "delete",a,method: :delete ,data:{confirm:" Are you sure to delete?"}%></td>
+					<%else%>
+					<%end%>
+				
+				<%else%>
+				<%end%>
+
+
+			</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

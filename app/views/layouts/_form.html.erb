@@ -1,0 +1,79 @@
+<html>
+	<div class="container">
+	<center><h2 class="text-danger">Article</h2></center>
+	<hr/>
+
+	 <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+	
+	
+	
+	<div class="form-horizontal">
+		<%= form_for @article ,:html => {:multipart => true} do |a| %>
+
+			
+
+			
+			<div class="form-group">
+				<%= a.label :Title,class:"control-label col-sm-4"%>
+			<div class="col-sm-4">
+				<%= a.text_field :title,class:"form-control",id:"titleid"%>
+				<div id="title" %>
+				</div>
+			</div>
+			</div>
+
+
+			<div class="form-group">
+				<%= a.label :Categories,class:"control-label col-sm-4" %>
+			<div class="col-sm-4">
+				<%= select("article", "category_id", @categories.collect {|c| [ c.name, c.id ] },{prompt: "select category"},id:"categoryid",) %>
+				<div id="category">
+				</div>
+			</div><br/><br/>
+
+			<div class="form-group">
+			<%= a.label :image,class:"control-label col-sm-4"
+			 %>
+			<div class="col-sm-4">
+			<%= a.file_field :image %>
+			</div>
+			</div>
+
+  			<!-- <%= a.file_field :image %> -->
+
+			
+
+			<div class="form-group">
+				<%= a.label :Description,class:"control-label col-sm-4"%>
+			<div class="col-sm-4">
+				<%= a.text_area :text,class:"form-control",id:"textid"%>
+			<div id="text">
+			</div>
+			</div>
+			</div>
+
+			<div class="form-group">
+				<%= a.submit "save article",class:"btn btn-info btn-sm col-sm-offset-4",id:"clickid" %><div id="click"></div>
+			</div>
+
+		<% end %>
+
+		<% if @article.errors.present? %>
+		    <div id="error_explanation">
+		      <h3 class="text-danger">
+		        <%= pluralize(@article.errors.count, "error") %> prohibited
+		        this article from being saved:
+		      </h3>
+		      <ul>
+		        <% @article.errors.full_messages.each do |msg| %>
+		          <div class="alert alert-danger">
+		          	<li><%= msg %></li>
+		          </div>
+		        <% end %>
+		      </ul>
+		    </div>
+  		<% end %>
+
+  	</div>
+  </div>
+</html>

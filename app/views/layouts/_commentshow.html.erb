@@ -1,0 +1,14 @@
+<div class="container">
+		<h3 class="text-danger">Comments:</h3>
+		<% @article.comments.each do |s| %>
+			<div class="text-success style">Commenter:<%= s.commenter %></div>
+			<div class="text-success style">Body: <%= s.body %></div>
+			<div><%= link_to "delete comment",[s.article,s],method: :delete,data:{confirm: "Are you sure?"}%></div>
+			<div><%= link_to "edit comment",edit_article_comment_path(s.article,s)%></div>
+			 <%= link_to "Like",article_comment_like_path(@article,@comment),method: :post%>
+		<hr/>
+		<% end %>
+		<hr/>
+
+
+</div>

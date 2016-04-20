@@ -1,0 +1,20 @@
+
+<!--article view in show-->
+
+<div class="container">
+	<center><h2 class="text-danger">Show</h2></center>
+	<hr/>
+	<div class="text-success style"> Title:<%= @article.title %></div>
+	<div class="text-success style">Category:<%= @category.name %>
+	<div class="text-success style">Description:<%= @article.text %></div><br/>
+	<!-- <%= image_tag @article.image_url %><br/><br/> -->
+	
+	 <%= image_tag @article.image_url.to_s %><br/><br/>
+
+	<%= link_to "edit article",edit_article_path(@article),class:"btn btn-info btn-sm" %>
+	<%= link_to "all articles",articles_path,class: "btn btn-info btn-sm" %>
+	
+
+	
+
+</div>
