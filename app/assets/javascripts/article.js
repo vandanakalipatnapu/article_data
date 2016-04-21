@@ -27,6 +27,16 @@ $(document).ready(function(){
     		
 	});
 
+	$("#imageid").blur(function(){
+		if ($("#image").val()=="")
+		  	document.getElementById("image").innerHTML="you must select an image"
+  		else 
+  			document.getElementById("image").innerHTML=""
+    		
+	});
+
+
+
 	$("#clickid").click(function(){
 		if($("#textid").val() == "" || $("#textid").val().match( /[0-9]|\(|\)|\&|\!|\#/)){
 			document.getElementById("click").innerHTML="Enter valid description"
@@ -38,16 +48,21 @@ $(document).ready(function(){
 			return false;
 		}
 
-		if($("#titleid").val() == "" || $("#titleid").val().match( /[0-9]|\(|\)|\&|\!|\#/)){
+		else if($("#titleid").val() == "" || $("#titleid").val().match( /[0-9]|\(|\)|\&|\!|\#/)){
 			document.getElementById("click").innerHTML="Enter valid title name"
 			return false;
 		}
 
+		else if($("#imageid").val() == ""){
+			document.getElementById("click").innerHTML="select image"
+			return false;
+		}
 
+		else
+			document.getElementById("click").innerHTML=""
+			return true;
 
-
-
-		});
+	});
 	
 
 

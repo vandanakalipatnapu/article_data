@@ -4,13 +4,18 @@
 <div class="container">
 	<center><h2 class="text-danger">Show</h2></center>
 	<hr/>
-	<div class="text-success style"> Title:<%= @article.title %></div>
-	<div class="text-success style">Category:<%= @category.name %>
-	<div class="text-success style">Description:<%= @article.text %></div><br/>
-	<!-- <%= image_tag @article.image_url %><br/><br/> -->
-	
-	 <%= image_tag @article.image_url.to_s %><br/><br/>
+	<div class="text-success "> Title:<%= @article.title %></div><br/>
+	<div class="text-success ">Category:<%= @category.name %></div><br/>
+	<div class="text-success ">Description:<%= @article.text %></div><br/>
+	<div class="text-success ">Email: <%= @article.user.email %></div><br/>
+	<div><%= image_tag @article.image_url.to_s %></div><br/><br/>
 
+	<% if !@article.likes.find_by(:user_id => current_user.id)%>
+	<%= link_to "like",article_likes_path(@article),method: :post %>
+	<%else%>
+	<%= "unlike" %>
+	<%end%>
+	
 	<%= link_to "edit article",edit_article_path(@article),class:"btn btn-info btn-sm" %>
 	<%= link_to "all articles",articles_path,class: "btn btn-info btn-sm" %>
 	

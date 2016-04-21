@@ -13,7 +13,7 @@
 			
 
 			
-			<div class="form-group">
+			<div class="form-group text-info">
 				<%= a.label :Title,class:"control-label col-sm-4"%>
 			<div class="col-sm-4">
 				<%= a.text_field :title,class:"form-control",id:"titleid"%>
@@ -23,7 +23,7 @@
 			</div>
 
 
-			<div class="form-group">
+			<div class="form-group text-info">
 				<%= a.label :Categories,class:"control-label col-sm-4" %>
 			<div class="col-sm-4">
 				<%= select("article", "category_id", @categories.collect {|c| [ c.name, c.id ] },{prompt: "select category"},id:"categoryid",) %>
@@ -31,11 +31,12 @@
 				</div>
 			</div><br/><br/>
 
-			<div class="form-group">
+			<div class="form-group text-info">
 			<%= a.label :image,class:"control-label col-sm-4"
 			 %>
 			<div class="col-sm-4">
-			<%= a.file_field :image %>
+			<%= a.file_field :image ,id:"imageid"%>
+			<div id="image"></div>
 			</div>
 			</div>
 
@@ -43,7 +44,7 @@
 
 			
 
-			<div class="form-group">
+			<div class="form-group text-info">
 				<%= a.label :Description,class:"control-label col-sm-4"%>
 			<div class="col-sm-4">
 				<%= a.text_area :text,class:"form-control",id:"textid"%>
@@ -52,7 +53,7 @@
 			</div>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group text-info">
 				<%= a.submit "save article",class:"btn btn-info btn-sm col-sm-offset-4",id:"clickid" %><div id="click"></div>
 			</div>
 

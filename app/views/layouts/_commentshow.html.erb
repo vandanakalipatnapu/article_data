@@ -1,14 +1,24 @@
 <div class="container">
 		<h3 class="text-danger">Comments:</h3>
+		
 		<% @article.comments.each do |s| %>
+			
 			<div class="text-success style">Commenter:<%= s.commenter %></div>
 			<div class="text-success style">Body: <%= s.body %></div>
+			
 			<div><%= link_to "delete comment",[s.article,s],method: :delete,data:{confirm: "Are you sure?"}%></div>
 			<div><%= link_to "edit comment",edit_article_comment_path(s.article,s)%></div>
-			 <%= link_to "Like",article_comment_like_path(@article,@comment),method: :post%>
+			<div class="text-success style">Like: <%= s.likes.count %></div>
+			
+			<% if !s.likes.find_by(:user_id => current_user.id)%>
+				<%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-up') + 'Like', article_comment_likes_path(@article,s), method: :post %></div>
+			<%else%>
+				<div><%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-thumbs-down') + 'Unlike'%></div>
+			<%end%>
+
 		<hr/>
 		<% end %>
 		<hr/>
-
+		
 
 </div>

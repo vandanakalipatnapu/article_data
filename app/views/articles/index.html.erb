@@ -4,8 +4,9 @@
 </style>
 
 <center><h2 class="text-danger">All Articles</h2></center>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<div class="container">
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ -->
+ <div class="container">
 
 	<%= link_to "new article",new_article_path ,class: "btn btn-info btn-sm"%><br/>
 
@@ -15,6 +16,7 @@
 				<th class="align">Title</th>
 				<th class="align">Description</th>
 				<th class="align">Category</th>
+				<th class="align">Likes</th>
 				<% if current_user %>
 					<% if current_user.role == "admin" %>
 						<th colspan="5" class="align">Actions</th>
@@ -29,6 +31,7 @@
 				<td class="align"><%=link_to a.title,a %></td>
 				<td class="align"><%= a.text %></td>
 				<td class="align"><%= link_to a.category.name,article_path(a) %></td>
+				<td class="align"><%= a.likes.count %></td>
 
 				<% if current_user %>
 				    <% if current_user.role == "admin" %>
@@ -45,4 +48,5 @@
 			<% end %>
 		</table>
 	</div>
+	<%= paginate @articles%>
 </div>

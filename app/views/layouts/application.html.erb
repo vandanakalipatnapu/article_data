@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html>
+<style>
+body{
+  background: url(/assets/.jpg);
+  background-repeat: no-repeat; 
+  background-size: 100%;
+}
+</style>
+
 <head>
   <title>ArticleData</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -7,9 +15,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+ 
  <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
+
 
 <%= nav_bar brand: "Articles" do %>
     <%= menu_group do %>

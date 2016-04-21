@@ -8,6 +8,6 @@ class Article < ActiveRecord::Base
 	validates :text,:title,presence:true,:uniqueness => true
 	validates :title,format:{with:/\A[a-zA-Z|0-9|\,|\,|\s]+\z/, message: "Enter letters only"}
 	validates :text,format:{with:/\A[a-zA-Z|0-9|\s|\,|\.|\-]+\z/, message: "Enter text in correct format"}
-
+	validates :image,presence:true
 
 end

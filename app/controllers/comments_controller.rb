@@ -46,7 +46,6 @@ class CommentsController < ApplicationController
 			render 'edit'
 		end
 	end
-	
 	private
 		def comment_params
 			params[:comment].permit(:commenter,:body)
