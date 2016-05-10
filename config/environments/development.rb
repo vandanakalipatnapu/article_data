@@ -33,7 +33,7 @@ Rails.application.configure do
     authentication:"plain",
     enable_starttls_auto:true,
     user_name:"vandana.kalipatnapu32@gmail.com",
-    password:"vandana10993"
+    password:"vandana"
   }
 
   # Print deprecation notices to the Rails logger.

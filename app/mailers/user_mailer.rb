@@ -10,6 +10,12 @@ class UserMailer < ApplicationMailer
 	def like_user(email,article)
 		@email = email
 		@article = article
+		@comment = comment
 		mail(to: @email, subject:'Welcome to my mail')
+	end
+
+	def like_comment(email,comment)
+		@email = email
+		mail(to: @email, subject:'welcome to my mail')
 	end
 end
