@@ -1,20 +1,24 @@
 class CategoriesController < ApplicationController
-	before_action :authenticate_user!,only: [:new]
+	# before_action :authenticate_user!,only: [:new]
 	def new
 		@category = Category.new
+		
 	end
 
 	def create
 		@category = Category.new(category_params)
 		if @category.save
-			redirect_to categories_path
+			render json: {success: true,message: "A new category hasbeen created",category: @category}
+			# redirect_to categories_path
 		else
-			render 'new'
+			render json: {success: false,message: "New category hsanot been created",errors: @category.error.full_messages}
+			# render 'new'
 		end
 	end
 
 	def index
-		@category = Category.all
+		@categories = Category.all
+		render json: {success: true,message: "All categories hasbeen selected",categories: @categories}
 	end
 
 	def edit
@@ -24,20 +28,27 @@ class CategoriesController < ApplicationController
 	def update
 		@category = Category.find(params[:id])
 		if 	@category.update(category_params)
-			redirect_to categories_path
+			render json: {success: true,message: "Selected category hasbeen updated",category: @category}
+			# redirect_to categories_path
 		else
-			render 'edit'
+			# render 'edit'
+			render json: {success: false,message: "Selected category hasnot been updated",category: @category}
 		end
 	end
 
 	def destroy
 		@category=Category.find(params[:id])
-		@category.destroy
-		redirect_to categories_path
+		if @category.destroy
+			render json: {sucess: true,message: "Selected category hasbeen deleted",category: @category}
+		# redirect_to categories_path
+		else
+			render 'index'
+			render json: {success: false,message: "Selected category hasnot been deleted",category: @category}
+		end
 	end
 
 	private
 		def category_params
-			params[:category].permit(:name)
+			params.permit(:name)
 		end
 end

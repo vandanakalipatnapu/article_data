@@ -3,9 +3,9 @@
 <hr/>
 
 <h3 class="text-success">Categories:</h3>
-<% @category.each do |c| %>
+<% @categories.each do |c| %>
 	
-	<h4><span class="text-success"><%= c.id%> .</span>
+	<h4><span class="text-success"><%= c.id%></span>
 	<%= c.name %></h4>
 	<%= link_to "Edit", edit_category_path(c) %> | <%= link_to "Delete",c,method: :delete,data:{confirm: "Are sure to delete?"} %><br/>
 

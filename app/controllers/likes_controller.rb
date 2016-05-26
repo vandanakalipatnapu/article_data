@@ -6,13 +6,14 @@ class LikesController < ApplicationController
         
             @comment.likes.create(user_id:current_user.id)
             @user=User.find(current_user.id)
-            UserMailer.like_user(@article.user.email).deliver_now
+            UserMailer.like_user(@article.user.email,@comment).deliver_now
             redirect_to @article
         else
             @article.likes.create(user_id:current_user.id)
             @user=User.find(current_user.id)
             UserMailer.like_user(@article.user.email,@article).deliver_now
             redirect_to @article
+            # render json: {success: true,message: "Seclected article has been liked",article: @article.likes.count}
         end
     end
 end

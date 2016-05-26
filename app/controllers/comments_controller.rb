@@ -6,13 +6,15 @@ class CommentsController < ApplicationController
  
 	def create
 		@article = Article.find(params[:article_id])
-		@comment = @article.comments.create(comment_params)
+		# @article =Article.find_by(id: article_id)
+
+		@comment = @article.comments.new(comment_params)
 		if @comment.save
-			render json: {success: true,message: "comment has been created",comment: @comment} and return
-			redirect_to article_comment_show_path(@article.id) 
+			render json: {success: true,message: "comment has been created",comment: @comment}
+			# redirect_to article_comment_show_path(@article.id) 
 		else
 			render json: {success: false,message: "comment has not been created",errors: @comment.errors.full_messages} and return
-			render 'new'
+			# render 'new'
 		end
 	end
 
@@ -26,11 +28,11 @@ class CommentsController < ApplicationController
 		@article = Article.find(params[:article_id])
 	    @comment = Comment.find(params[:id])
 		if 	@comment.destroy
-			render json: {success: true, message: "selected comment has been deleted",@comment} and return
-			redirect_to article_comment_show_path(@article.id)
+			render json: {success: true, message: "selected comment has been deleted",comment: @comment}
+			# redirect_to article_comment_show_path(@article.id)
 		else
 			render json: {success: false, message: "selected comment hasnot been deleted",errors: @comment.errors.full_messages} and return
-			redirect_to article_comment_show_path(@article.id)
+			# redirect_to article_comment_show_path(@article.id)
 		end
 	end
 
@@ -40,13 +42,12 @@ class CommentsController < ApplicationController
 	end
 
 	def update
-		
 		@article = Article.find(params[:article_id])
 		@comment = Comment.find(params[:id])
 		if @comment.update(comment_params)
-			redirect_to article_comment_show_path(@article.id)
+			# redirect_to article_comment_show_path(@article.id)
 		else
-			render 'edit'
+			# render 'edit'
 		end
 	end
 	private
